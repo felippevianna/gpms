@@ -1,0 +1,13 @@
+.center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Altura total da viewport */
+  }
+  
+  .center-container > * {
+    width: 100%; /* Garante que o conteúdo dentro do container ocupe toda a largura */
+    max-width: 600px; 
+    padding: 20px; /* Espaçamento interno */
+  }
+  
