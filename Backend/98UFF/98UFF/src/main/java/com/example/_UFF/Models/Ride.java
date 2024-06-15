@@ -3,6 +3,10 @@ package com.example._UFF.Models;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -30,8 +34,12 @@ public class Ride {
     private String status;
 
     @OneToMany(mappedBy = "carona")
+    @JsonManagedReference
     private Set<Passenger> passageiros;
 
-    // Getters and Setters
+    @JsonProperty("motorista_id")
+    public Long getUserId() {
+        return (this.motorista != null) ? this.motorista.getId() : null;
+    }
 }
 

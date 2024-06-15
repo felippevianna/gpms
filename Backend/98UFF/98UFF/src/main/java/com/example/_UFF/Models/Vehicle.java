@@ -1,4 +1,7 @@
 package com.example._UFF.Models;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.*;
 
 import lombok.Getter;
@@ -17,6 +20,7 @@ public class Vehicle {
 
     @ManyToOne
     @JoinColumn(name = "usuario_id")
+    @JsonIgnore
     private User usuario;
 
     private String marca;
@@ -25,5 +29,8 @@ public class Vehicle {
     private String cor;
     private Integer ano;
 
-    // Getters and Setters
+    @JsonProperty("usuario_id")
+    public Long getUserId() {
+        return (this.usuario != null) ? this.usuario.getId() : null;
+    }
 }

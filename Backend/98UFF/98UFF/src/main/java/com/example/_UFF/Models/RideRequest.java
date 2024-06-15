@@ -2,6 +2,10 @@ package com.example._UFF.Models;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,6 +21,7 @@ public class RideRequest {
 
     @ManyToOne
     @JoinColumn(name = "usuario_id")
+    @JsonIgnore
     private User usuario;
 
     private String origem;
@@ -25,5 +30,8 @@ public class RideRequest {
     private LocalDateTime dataHoraChegada;
     private String status;
 
-    // Getters and Setters
+    @JsonProperty("usuario_id")
+    public Long getUserId() {
+        return (this.usuario != null) ? this.usuario.getId() : null;
+    }
 }
