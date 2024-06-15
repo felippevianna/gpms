@@ -1,5 +1,8 @@
 package com.example._UFF.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,13 +19,23 @@ public class Passenger {
 
     @ManyToOne
     @JoinColumn(name = "carona_id")
+    @JsonIgnore
     private Ride carona;
 
     @ManyToOne
     @JoinColumn(name = "usuario_id")
+    @JsonIgnore
     private User usuario;
 
     private String status;
 
-    // Getters and Setters
+    @JsonProperty("usuario_id")
+    public Long getUserId() {
+        return (this.usuario != null) ? this.usuario.getId() : null;
+    }
+
+    @JsonProperty("carona_id")
+    public Long getRideId() {
+        return (this.carona != null) ? this.carona.getId() : null;
+    }
 }

@@ -7,6 +7,9 @@ import lombok.Setter;
 import java.time.LocalDate;
 import java.util.Set;
 
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Getter
 @Setter
@@ -25,7 +28,7 @@ public class User {
     private LocalDate dataCadastro;
 
     @OneToMany(mappedBy = "usuario")
+    @JsonManagedReference
     private Set<Vehicle> veiculos;
 
-    // Getters and Setters
 }
