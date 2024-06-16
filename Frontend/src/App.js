@@ -5,6 +5,7 @@ import Login from './pages/Login';
 import Home from './pages/Home';
 import CadastroCarona from './pages/CadastroCarona';
 import ListarCaronas from './pages/ListarCaronas';
+import Cadastro from './pages/Cadastro';
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/carona" element={<CadastroCarona />} />
           <Route path="/listar-caronas" element={<ListarCaronas />}/>
+          <Route path="/cadastro" element={<Cadastro />}/>
         </Routes>
       </BrowserRouter>
   );
