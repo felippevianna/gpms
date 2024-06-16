@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-Application<98UFF>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.example._UFF.Application",
+            "projectName": "98UFF",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
