@@ -10,13 +10,19 @@ const MenuPadrao  = () => {
         <MenuButton>Menu</MenuButton>
         <Menu>
             <MenuItem>
-                <Link to="/CadastroCarona">Cadastrar Carona</Link>
-            </MenuItem>
-            <MenuItem>
-                <a href="/ListarCaronas">Buscar Caronas</a>
-            </MenuItem>
-            <MenuItem>
                 <a href="/Login">Login</a>
+            </MenuItem>
+            <MenuItem>
+                <a href = "/carona">Cadastrar Carona</a>
+            </MenuItem>
+            <MenuItem>
+                <a href="/listar-caronas">Buscar Caronas</a>
+            </MenuItem>
+            <MenuItem>
+                <a href="/SolicitarCarona">Solicitar Carona</a>
+            </MenuItem>
+            <MenuItem>
+                <a href="/Perfil">Meu Perfil</a>
             </MenuItem>
         </Menu>
     </Dropdown>
