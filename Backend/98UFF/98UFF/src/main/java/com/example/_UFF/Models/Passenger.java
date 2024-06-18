@@ -1,5 +1,6 @@
 package com.example._UFF.Models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -19,7 +20,7 @@ public class Passenger {
 
     @ManyToOne
     @JoinColumn(name = "carona_id")
-    @JsonIgnore
+    @JsonBackReference
     private Ride carona;
 
     @ManyToOne
