@@ -2,13 +2,10 @@ import React, { useState } from 'react';
 import Grid from '@mui/material/Grid';
 import Container from '../components/Container';
 import TextField from '@mui/material/TextField';
-import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Radio from '@mui/material/Radio';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Cadastro = () => {
   const [formData, setFormData] = useState({
@@ -16,52 +13,40 @@ const Cadastro = () => {
     email: '',
     senha: '',
     telefone: '',
-    tipo: '', // Esta será a opção selecionada: 'passageiro' ou 'motorista'
-    marca: '', // Campos adicionais para motorista
-    modelo: '',
-    placa: '',
-    cor: '',
-    ano: '',
   });
 
-  const [isMotorista, setIsMotorista] = useState(false); // Estado para controlar se é motorista
+  const navigate = useNavigate(); // Hook para redirecionamento
 
   const isFormValid = () => {
-    if (!formData.nome || !formData.email || !formData.senha || !formData.telefone) {
-      return false;
-    }
-    if (isMotorista && (!formData.marca || !formData.modelo || !formData.placa || !formData.cor || !formData.ano)) {
-      return false;
-    }
-    return true;
+    return formData.nome && formData.email && formData.senha && formData.telefone;
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (name === 'tipo') {
-      setIsMotorista(value === 'motorista');
-      // Reset dos campos do carro quando mudar de tipo para passageiro
-      if (value === 'passageiro') {
-        setFormData((prevData) => ({
-          ...prevData,
-          marca: '',
-          modelo: '',
-          placa: '',
-          cor: '',
-          ano: '',
-        }));
-      }
-    }
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
-    //  enviar os dados para a API
+
+    const dataAtual = new Date().toISOString().split('T')[0];
+
+    const usuarioData = {
+      ...formData,
+      dataCadastro: dataAtual,
+    };
+
+    try {
+      const response = await axios.post('http://localhost:8080/api/users', usuarioData);
+      console.log(response.data);
+      navigate('/');
+    } catch (error) {
+      console.error('Erro ao cadastrar usuário:', error);
+      // Precisamos implementar o tratamentos dos erros ainda.
+    }
   };
 
   return (
@@ -123,87 +108,6 @@ const Cadastro = () => {
                 onChange={handleChange}
                 required
               />
-              <FormControl component="fieldset" margin="normal">
-                <FormLabel component="legend">Tipo de Cadastro</FormLabel>
-                <RadioGroup
-                  aria-label="tipo"
-                  name="tipo"
-                  value={formData.tipo}
-                  onChange={handleChange}
-                  row
-                >
-                  <FormControlLabel
-                    value="passageiro"
-                    control={<Radio />}
-                    label="Passageiro"
-                  />
-                  <FormControlLabel
-                    value="motorista"
-                    control={<Radio />}
-                    label="Motorista"
-                  />
-                </RadioGroup>
-              </FormControl>
-
-              {isMotorista && (
-                <>
-                  <TextField
-                    fullWidth
-                    variant="outlined"
-                    margin="normal"
-                    id="marca"
-                    name="marca"
-                    label="Marca"
-                    value={formData.marca}
-                    onChange={handleChange}
-                    required
-                  />
-                  <TextField
-                    fullWidth
-                    variant="outlined"
-                    margin="normal"
-                    id="modelo"
-                    name="modelo"
-                    label="Modelo"
-                    value={formData.modelo}
-                    onChange={handleChange}
-                    required
-                  />
-                  <TextField
-                    fullWidth
-                    variant="outlined"
-                    margin="normal"
-                    id="placa"
-                    name="placa"
-                    label="Placa"
-                    value={formData.placa}
-                    onChange={handleChange}
-                    required
-                  />
-                  <TextField
-                    fullWidth
-                    variant="outlined"
-                    margin="normal"
-                    id="cor"
-                    name="cor"
-                    label="Cor"
-                    value={formData.cor}
-                    onChange={handleChange}
-                    required
-                  />
-                  <TextField
-                    fullWidth
-                    variant="outlined"
-                    margin="normal"
-                    id="ano"
-                    name="ano"
-                    label="Ano"
-                    value={formData.ano}
-                    onChange={handleChange}
-                    required
-                  />
-                </>
-              )}
 
               <Button
                 type="submit"
