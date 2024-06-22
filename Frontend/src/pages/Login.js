@@ -28,7 +28,7 @@ const Login = () => {
         password,
       });
 
-      const { token, userId } = response.data;
+      const { token, userId, userName } = response.data;
       // Armazene o token e o userId (ID do usuário) no localStorage ou sessionStorage
       localStorage.setItem('token', token);
       localStorage.setItem('userId', userId);
@@ -55,7 +55,9 @@ const Login = () => {
   return (
     <Container>
       <Box container spacing={1} sx={{ flexGrow: 1, p: 5, border: '1px ridge grey', borderRadius: 10 }}>
-        <img src={logo} alt="Logo" style={{ width: '100px', marginBottom: '20px' }} />
+        <div style={{ display: 'grid', placeItems: 'center', height: '10vh' }}>
+          <img src={logo} alt="Logo" style={{ width: '120px', marginBottom: '30px' }} />
+        </div>
         <h2>Login</h2>
 
         <Grid xs={6} md={12}>

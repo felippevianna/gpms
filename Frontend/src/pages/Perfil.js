@@ -9,6 +9,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import axios from 'axios'; // Importar axios
 import Navbar from '../components/Navbar';
+import { Link as RouterLink } from 'react-router-dom';
 
 const Perfil = () => {
   const [perfilUsuario, setPerfilUsuario] = useState(null);
@@ -102,6 +103,8 @@ const Perfil = () => {
                   borderRadius: '10px',
                   padding: '30px',
                   textAlign: 'center',
+                  maxWidth: '700px', // Define uma largura máxima para a caixa
+                  width: '100%', // Garante que a caixa ocupe 100% da largura disponíve
                 }}
               >
                 <Typography variant="h4" gutterBottom>
@@ -139,6 +142,17 @@ const Perfil = () => {
                       value={perfilUsuario.telefone}
                       onChange={handleInputChange}
                     />
+                    <TextField
+                      fullWidth
+                      variant="outlined"
+                      margin="normal"
+                      id="senha"
+                      name="senha"
+                      label="Senha"
+                      value={perfilUsuario.senha}
+                      onChange={handleInputChange}
+                    />
+
                     <Button
                       variant="contained"
                       color="primary"
@@ -180,6 +194,15 @@ const Perfil = () => {
                       sx={{ mt: 2 }}
                     >
                       Editar Perfil
+                    </Button>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      component={RouterLink}
+                      to="/CadastroVeiculo" // Altere para o caminho da tela desejada
+                      sx={{ mt: 2, ml: 2 }}
+                    >
+                      Cadastrar Veiculo
                     </Button>
                   </>
                 )}

@@ -5,6 +5,8 @@ import Box from '@mui/joy/Box';
 import Container from '../components/Container';
 import Input from '@mui/joy/Input';
 import Navbar from '../components/Navbar';
+import { useNavigate } from 'react-router-dom'; // Importe useNavigate para redirecionamento
+import Typography from '@mui/material/Typography';
 
 const CadastroVeiculo = () => {
   const [formData, setFormData] = useState({
@@ -13,8 +15,10 @@ const CadastroVeiculo = () => {
     modelo: '',
     placa: '',
     cor: '',
-    ano: ''
+    ano: '',
   });
+
+  const navigate = useNavigate(); // Inicialize useNavigate para navegação
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,7 +31,7 @@ const CadastroVeiculo = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8080/api/veiculos', formData);
+      const response = await axios.post('http://localhost:8080/api/vehicles', formData);
       console.log('Veículo cadastrado:', response.data);
       // Lógica adicional após cadastrar o veículo, como redirecionar ou limpar o formulário
     } catch (error) {
@@ -35,14 +39,19 @@ const CadastroVeiculo = () => {
     }
   };
 
+  const handleBack = () => {
+    navigate('/Perfil'); // Altere '/previous-path' para o caminho desejado
+  };
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Navbar />
       <Container>
         <Box container spacing={0} sx={{ flexGrow: 0, p: 3, border: '1px ridge grey', borderRadius: 10 }}>
+          <Typography variant="h4" gutterBottom align="center">
+                  Cadastro de Veiculo
+          </Typography>
           <form onSubmit={handleSubmit}>
-            <p>Usuário ID:</p>
-            <Input name="usuarioId" onChange={handleChange} placeholder="ID do Usuário" />
 
             <p>Marca:</p>
             <Input name="marca" onChange={handleChange} placeholder="Marca do Veículo" />
@@ -59,7 +68,10 @@ const CadastroVeiculo = () => {
             <p>Ano:</p>
             <Input type="number" name="ano" onChange={handleChange} placeholder="Ano de Fabricação" />
 
-            <Button style={{ marginTop: '20px' }} type="submit">Cadastrar Veículo</Button>
+              <Box display="flex" justifyContent="space-between" sx={{ mt: 2 }}>
+                <Button style={{ marginTop: '20px' }} type="submit">Cadastrar Veículo</Button>
+                <Button style={{ marginTop: '20px' }} onClick={handleBack}>Voltar</Button>
+            </Box>
           </form>
         </Box>
       </Container>

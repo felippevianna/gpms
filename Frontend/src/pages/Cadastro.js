@@ -5,6 +5,8 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import axios from 'axios';
+import Stack from '@mui/joy/Stack';
+import { useNavigate } from 'react-router-dom'; // Importe useNavigate para redirecionamento
 
 const Cadastro = () => {
   const [formData, setFormData] = useState({
@@ -12,7 +14,9 @@ const Cadastro = () => {
     email: '',
     senha: '',
     telefone: '',
+    reputacao: '5.0',
   });
+  const navigate = useNavigate(); // Inicialize useNavigate para navegação
 
   const isFormValid = () => {
     return formData.nome && formData.email && formData.senha && formData.telefone;
@@ -39,25 +43,25 @@ const Cadastro = () => {
     try {
       const response = await axios.post('http://localhost:8080/api/users', usuarioData);
       console.log(response.data);
+
+      navigate('/Login'); // Use navigate para redirecionar
     } catch (error) {
       console.error('Erro ao cadastrar usuário:', error);
       // Precisamos implementar o tratamentos dos erros ainda.
     }
   };
 
+  const handleBack = () => {
+    navigate('/Login'); // Altere '/previous-path' para o caminho desejado
+  };
+
   return (
     <Container>
-      <Grid container spacing={2} justifyContent="center">
-        <Grid item xs={12} md={6}>
-          <Box
-            sx={{
-              border: '1px solid #ccc',
-              borderRadius: '10px',
-              padding: '20px',
-              textAlign: 'center',
-            }}
-          >
-            <form onSubmit={handleSubmit}>
+      <Box sx={{ flexGrow: 1, p: 5, border: '1px ridge grey', borderRadius: 10 }}>
+        <h2 style={{ textAlign: 'center'}}>Cadastro</h2>
+        <Grid xs={6} md={12}>
+          <form onSubmit={handleSubmit}>
+            <Stack spacing={2}>
               <TextField
                 fullWidth
                 variant="outlined"
@@ -104,7 +108,6 @@ const Cadastro = () => {
                 onChange={handleChange}
                 required
               />
-
               <Button
                 type="submit"
                 variant="contained"
@@ -113,10 +116,17 @@ const Cadastro = () => {
               >
                 Confirmar Cadastro
               </Button>
-            </form>
-          </Box>
+              <Button
+                variant="outlined"
+                color="secondary"
+                onClick={handleBack}
+              >
+                Voltar
+              </Button>
+            </Stack>
+          </form>
         </Grid>
-      </Grid>
+      </Box>
     </Container>
   );
 };
