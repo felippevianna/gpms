@@ -17,7 +17,15 @@ const Perfil = () => {
     // Função para buscar os dados do usuário
     const fetchUserData = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/api/users/1'); // Substitua pelo endpoint correto
+        const token = localStorage.getItem('token');
+        const userId = localStorage.getItem('userId');
+        const response = await axios.get('http://localhost:8080/api/users/' + userId);
+
+        // const response = await axios.get('http://localhost:8080/api/users/' + userId, {
+        //   headers: {
+        //     'Authorization': `Bearer ${token}`
+        //   }
+        // });
         setPerfilUsuario(response.data);
       } catch (error) {
         console.error('Erro ao buscar dados do usuário:', error);
