@@ -28,6 +28,12 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>42.2.24</version> <!-- Versão atualizada do driver -->
+		</dependency>
+
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -47,6 +53,12 @@
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
+
+	<dependency>
+    	<groupId>org.postgresql</groupId>
+    	<artifactId>postgresql</artifactId>
+    	<version>42.2.20</version>
+	</dependency>
 
 		<dependency>
 			<groupId>org.projectlombok</groupId>
