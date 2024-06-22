@@ -5,7 +5,6 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 
 const Cadastro = () => {
   const [formData, setFormData] = useState({
@@ -14,8 +13,6 @@ const Cadastro = () => {
     senha: '',
     telefone: '',
   });
-
-  const navigate = useNavigate(); // Hook para redirecionamento
 
   const isFormValid = () => {
     return formData.nome && formData.email && formData.senha && formData.telefone;
@@ -42,7 +39,6 @@ const Cadastro = () => {
     try {
       const response = await axios.post('http://localhost:8080/api/users', usuarioData);
       console.log(response.data);
-      navigate('/');
     } catch (error) {
       console.error('Erro ao cadastrar usuário:', error);
       // Precisamos implementar o tratamentos dos erros ainda.
