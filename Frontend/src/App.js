@@ -8,6 +8,7 @@ import ListarCaronas from './pages/ListarCaronas';
 import Cadastro from './pages/Cadastro';
 import SolicitarCarona from './pages/SolicitarCarona';
 import Perfil from './pages/Perfil';
+import CadastroVeiculo from './pages/CadastroVeiculo';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/cadastro" element={<Cadastro />}/>
           <Route path="/SolicitarCarona" element={<SolicitarCarona />}/>
           <Route path="/Perfil" element={<Perfil />}/>
+          <Route path="/CadastroVeiculo" element={<CadastroVeiculo />}/>
 
         </Routes>
       </BrowserRouter>
