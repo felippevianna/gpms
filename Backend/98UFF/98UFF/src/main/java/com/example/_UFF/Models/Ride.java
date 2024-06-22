@@ -37,6 +37,10 @@ public class Ride {
     @JsonManagedReference
     private Set<Passenger> passageiros;
 
+    @OneToMany(mappedBy = "carona")
+    @JsonManagedReference
+    private Set<RideRequest> solicitacoesCarona;
+
     @JsonProperty("motorista_id")
     public Long getUserId() {
         return (this.motorista != null) ? this.motorista.getId() : null;

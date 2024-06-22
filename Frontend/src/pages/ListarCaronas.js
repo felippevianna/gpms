@@ -3,12 +3,14 @@ import { Container, Box, Input, Button, Card, CardContent, Typography, IconButto
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import axios from 'axios';
 import Navbar from '../components/Navbar';
+import { useNavigate } from 'react-router-dom';
 
 const ListarCaronas = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [searchResults, setSearchResults] = useState([]);
     const [selectedRide, setSelectedRide] = useState(null);
     const [openModal, setOpenModal] = useState(false);
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         setSearchTerm(e.target.value);
@@ -19,7 +21,6 @@ const ListarCaronas = () => {
         
         try {
             const response = await axios.get(`http://localhost:8080/api/rides`);
-            console.log(response.data);
             setSearchResults(response.data);
         } catch (error) {
             console.error('Erro ao buscar caronas:', error);
@@ -34,6 +35,34 @@ const ListarCaronas = () => {
 
     const handleCloseModal = () => {
         setOpenModal(false);
+    };
+
+    const handleRequestRide = async () => {
+        const user = JSON.parse(localStorage.getItem('user'));
+        console.log(user);
+
+        // Verifica se o userId e selectedRide são válidos
+        if (!user || !selectedRide) {
+            alert('Erro: Usuário ou carona não definidos.');
+            navigate('/Login');
+            return;
+        }
+
+        const solicitacao = {
+            usuario: user,
+            carona: selectedRide,
+        };
+
+        try {
+            const response = await axios.post('http://localhost:8080/api/ride-requests', solicitacao);
+            if (response.status === 200) {
+                alert('Solicitação de carona enviada com sucesso!');
+                setOpenModal(false);
+            }
+        } catch (error) {
+            console.error('Erro ao solicitar carona:', error);
+            alert('Erro ao solicitar carona. Por favor, tente novamente.');
+        }
     };
 
     return (
@@ -110,6 +139,14 @@ const ListarCaronas = () => {
                                 <Typography variant="body2" gutterBottom>
                                     Horário de partida: {selectedRide.dataHoraPartida}
                                 </Typography>
+                                <Button
+                                    variant="contained"
+                                    color="primary"
+                                    onClick={handleRequestRide}
+                                    sx={{ mt: 2, ml: 2 }}
+                                    >
+                                    Solicitar Carona
+                                </Button>
                             </>
                         )}
                     </Box>

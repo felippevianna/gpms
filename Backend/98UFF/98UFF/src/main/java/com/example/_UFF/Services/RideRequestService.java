@@ -29,10 +29,6 @@ public class RideRequestService {
 
     public RideRequest updateRideRequest(Long id, RideRequest rideRequestDetails) {
         RideRequest rideRequest = rideRequestRepository.findById(id).orElseThrow(() -> new RuntimeException("RideRequest not found"));
-        rideRequest.setOrigem(rideRequestDetails.getOrigem());
-        rideRequest.setDestino(rideRequestDetails.getDestino());
-        rideRequest.setDataHoraPartida(rideRequestDetails.getDataHoraPartida());
-        rideRequest.setDataHoraChegada(rideRequestDetails.getDataHoraChegada());
         rideRequest.setStatus(rideRequestDetails.getStatus());
         return rideRequestRepository.save(rideRequest);
     }

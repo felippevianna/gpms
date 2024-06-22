@@ -33,7 +33,7 @@ public class AuthController {
             if (user.getSenha().equals(loginRequest.getPassword())) {
                 // Autenticação bem-sucedida, retorna o token (UUID) e o ID do usuário
                 String token = UUID.randomUUID().toString();
-                return ResponseEntity.ok().body(Map.of("token", token, "userId", user.getId()));
+                return ResponseEntity.ok().body(Map.of("token", token, "user", user));
             }
         }
         
