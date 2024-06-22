@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import Grid from '@mui/joy/Grid';
+import axios from 'axios';
+import Grid from '@mui/material/Grid';
 import Container from '../components/Container';
 import Input from '@mui/joy/Input';
 import Stack from '@mui/joy/Stack';
@@ -13,19 +14,34 @@ import logo from '../styles/98UFF.png'; // Certifique-se de que o caminho está 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [useHistory, setUseHistory] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Verifica se ambos os campos estão preenchidos
-    if (username.trim() === '' || password.trim() === '') {
-      alert('Por favor, preencha todos os campos!');
-      return;
-    }
+    console.log(username);
+    console.log(password);
+    try {
+      const response = await axios.post('http://localhost:8080/api/auth/login', {
+        username,
+        password,
+      });
 
-    // Aqui você pode adicionar lógica para enviar os dados do formulário
-    console.log('Usuário:', username);
-    console.log('Senha:', password);
+      const { token, userId } = response.data;
+      // Aqui você pode armazenar o token e o userId (ID do usuário) no localStorage ou sessionStorage
+      localStorage.setItem('token', token);
+      localStorage.setItem('userId', userId);
+
+      // Redirecionar para a página de perfil ou outra página após o login
+      // Exemplo de redirecionamento para a página de perfil:
+      console.log('Login successful! Token:', token, 'UserID:', userId);
+
+
+    } catch (error) {
+      setError('Erro ao fazer login. Verifique suas credenciais.');
+      console.error('Erro ao fazer login:', error);
+    }
   };
 
   const handleUsernameChange = (e) => {
@@ -63,10 +79,12 @@ const Login = () => {
 
               <Button type="submit" disabled={!username || !password}>Entrar</Button>
 
+              {error && <p style={{ color: 'red' }}>{error}</p>}
+
               <Divider />
               <Box sx={{ display: 'flex', gap: 1, alignItems: 'center', flexWrap: 'wrap' }}>
                 <p>Não tem uma conta?</p>
-                <a href="/cadastro">Cadastre-se</a>
+                <Link to="/cadastro">Cadastre-se</Link>
               </Box>
 
             </Stack>
