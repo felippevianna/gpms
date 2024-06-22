@@ -18,6 +18,7 @@ const CadastroCarona = () => {
     status: 'Ativo', // Valor padrão
   });
 
+  console.log(localStorage.getItem('userName'))
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
