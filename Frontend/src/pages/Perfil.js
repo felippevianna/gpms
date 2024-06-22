@@ -8,6 +8,7 @@ import StarOutlineIcon from '@mui/icons-material/StarOutline';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import axios from 'axios'; // Importar axios
+import Navbar from '../components/Navbar';
 
 const Perfil = () => {
   const [perfilUsuario, setPerfilUsuario] = useState(null);
@@ -82,100 +83,103 @@ const Perfil = () => {
   }
 
   return (
-    <Container>
-      <Grid container spacing={2} justifyContent="center">
-        <Grid item xs={12} md={8}>
-          <Box
-            sx={{
-              border: '1px solid #ccc',
-              borderRadius: '10px',
-              padding: '30px',
-              textAlign: 'center',
-            }}
-          >
-            <Typography variant="h4" gutterBottom>
-              Meu Perfil
-            </Typography>
-            {isEditing ? (
-              <>
-                <TextField
-                  fullWidth
-                  variant="outlined"
-                  margin="normal"
-                  id="nome"
-                  name="nome"
-                  label="Nome"
-                  value={perfilUsuario.nome}
-                  onChange={handleInputChange}
-                />
-                <TextField
-                  fullWidth
-                  variant="outlined"
-                  margin="normal"
-                  id="email"
-                  name="email"
-                  label="Email"
-                  value={perfilUsuario.email}
-                  onChange={handleInputChange}
-                />
-                <TextField
-                  fullWidth
-                  variant="outlined"
-                  margin="normal"
-                  id="telefone"
-                  name="telefone"
-                  label="Telefone"
-                  value={perfilUsuario.telefone}
-                  onChange={handleInputChange}
-                />
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={handleSaveChanges}
-                  sx={{ mt: 2 }}
-                >
-                  Salvar
-                </Button>
-                <Button
-                  variant="outlined"
-                  color="secondary"
-                  onClick={() => setIsEditing(false)}
-                  sx={{ mt: 2, ml: 2 }}
-                >
-                  Cancelar
-                </Button>
-              </>
-            ) : (
-              <>
-                <Typography variant="h6" gutterBottom>
-                  Nome: {perfilUsuario.nome}
+    <Box sx={{ flexGrow: 1 }}>
+      <Navbar/>
+        <Container>
+          <Grid container spacing={2} justifyContent="center">
+            <Grid item xs={12} md={8}>
+              <Box
+                sx={{
+                  border: '1px solid #ccc',
+                  borderRadius: '10px',
+                  padding: '30px',
+                  textAlign: 'center',
+                }}
+              >
+                <Typography variant="h4" gutterBottom>
+                  Meu Perfil
                 </Typography>
-                <Typography variant="h6" gutterBottom>
-                  Email: {perfilUsuario.email}
-                </Typography>
-                <Typography variant="h6" gutterBottom>
-                  Telefone: {perfilUsuario.telefone}
-                </Typography>
-                <Typography variant="h6" gutterBottom>
-                  Categoria: {perfilUsuario.tipoUsuario}
-                </Typography>
-                <Typography variant="h6" gutterBottom>
-                  Reputação: {renderStarRating(perfilUsuario.reputacao)}
-                </Typography>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={() => setIsEditing(true)}
-                  sx={{ mt: 2 }}
-                >
-                  Editar Perfil
-                </Button>
-              </>
-            )}
-          </Box>
-        </Grid>
-      </Grid>
-    </Container>
+                {isEditing ? (
+                  <>
+                    <TextField
+                      fullWidth
+                      variant="outlined"
+                      margin="normal"
+                      id="nome"
+                      name="nome"
+                      label="Nome"
+                      value={perfilUsuario.nome}
+                      onChange={handleInputChange}
+                    />
+                    <TextField
+                      fullWidth
+                      variant="outlined"
+                      margin="normal"
+                      id="email"
+                      name="email"
+                      label="Email"
+                      value={perfilUsuario.email}
+                      onChange={handleInputChange}
+                    />
+                    <TextField
+                      fullWidth
+                      variant="outlined"
+                      margin="normal"
+                      id="telefone"
+                      name="telefone"
+                      label="Telefone"
+                      value={perfilUsuario.telefone}
+                      onChange={handleInputChange}
+                    />
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={handleSaveChanges}
+                      sx={{ mt: 2 }}
+                    >
+                      Salvar
+                    </Button>
+                    <Button
+                      variant="outlined"
+                      color="secondary"
+                      onClick={() => setIsEditing(false)}
+                      sx={{ mt: 2, ml: 2 }}
+                    >
+                      Cancelar
+                    </Button>
+                  </>
+                ) : (
+                  <>
+                    <Typography variant="h6" gutterBottom>
+                      Nome: {perfilUsuario.nome}
+                    </Typography>
+                    <Typography variant="h6" gutterBottom>
+                      Email: {perfilUsuario.email}
+                    </Typography>
+                    <Typography variant="h6" gutterBottom>
+                      Telefone: {perfilUsuario.telefone}
+                    </Typography>
+                    <Typography variant="h6" gutterBottom>
+                      Categoria: {perfilUsuario.tipoUsuario}
+                    </Typography>
+                    <Typography variant="h6" gutterBottom>
+                      Reputação: {renderStarRating(perfilUsuario.reputacao)}
+                    </Typography>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={() => setIsEditing(true)}
+                      sx={{ mt: 2 }}
+                    >
+                      Editar Perfil
+                    </Button>
+                  </>
+                )}
+              </Box>
+            </Grid>
+          </Grid>
+        </Container>
+    </Box>
   );
 };
 

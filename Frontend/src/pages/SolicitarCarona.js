@@ -15,6 +15,8 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
+import Navbar  from '../components/Navbar';
+
 
 const SolicitarCarona = () => {
   const [formData, setFormData] = useState({
@@ -60,30 +62,7 @@ const SolicitarCarona = () => {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="fixed" sx={{ backgroundColor: '#FBC101' }}>
-        <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            98 UFF
-          </Typography>
-          <Box sx={{ display: 'flex', gap: '20px' }}>
-            <Link href="/carona" color="inherit" underline="none">
-              Cadastrar Carona
-            </Link>
-            <Link href="/SolicitarCarona" color="inherit" underline="none">
-              Solicitar Carona
-            </Link>
-            <Link href="/listar-caronas" color="inherit" underline="none">
-              Buscar Carona
-            </Link>
-            <Link href="/Perfil" color="inherit" underline="none">
-              Meu Perfil
-            </Link>
-            <Link href="/Login" color="inherit" underline="none">
-              Sair
-            </Link>
-          </Box>
-        </Toolbar>
-      </AppBar>
+      <Navbar/>
       <Container sx={{ marginTop: '80px' }}>
         <Grid container spacing={2} justifyContent="center">
           <Grid item xs={12} md={6}>
