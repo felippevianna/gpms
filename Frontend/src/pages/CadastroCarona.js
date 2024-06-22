@@ -5,10 +5,10 @@ import Box from '@mui/joy/Box';
 import Container from '../components/Container';
 import Input from '@mui/joy/Input';
 import Navbar from '../components/Navbar';
+import { useNavigate } from 'react-router-dom';
 
 const CadastroCarona = () => {
   const [formData, setFormData] = useState({
-    motoristaId: '', // Atributo correspondente ao motorista_id
     origem: '',
     destino: '',
     dataHoraPartida: '',
@@ -17,8 +17,8 @@ const CadastroCarona = () => {
     aceiteAutomatico: true, // Valor padrão
     status: 'Ativo', // Valor padrão
   });
+  const navigate = useNavigate();
 
-  console.log(localStorage.getItem('userName'))
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -30,9 +30,10 @@ const CadastroCarona = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8080/api/rides', formData);
-      console.log('Ride cadastrado:', response.data);
-      // Lógica adicional após cadastrar o ride, como redirecionar ou limpar o formulário
+      formData.motorista = JSON.parse(localStorage.getItem('user'));
+      await axios.post('http://localhost:8080/api/rides', formData);
+      navigate('/perfil')
+
     } catch (error) {
       console.error('Erro ao cadastrar o ride:', error);
     }
@@ -44,9 +45,6 @@ const CadastroCarona = () => {
       <Container>
         <Box container spacing={0} sx={{ flexGrow: 0, p: 3, border: '1px ridge grey', borderRadius: 10 }}>
           <form onSubmit={handleSubmit}>
-            <p>Motorista ID:</p>
-            <Input name="motoristaId" onChange={handleChange} placeholder="ID do Motorista" />
-
             <p>Origem:</p>
             <Input name="origem" onChange={handleChange} placeholder="Origem" />
 

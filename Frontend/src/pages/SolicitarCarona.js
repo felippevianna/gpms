@@ -11,12 +11,8 @@ import Radio from '@mui/material/Radio';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Link from '@mui/material/Link';
 import Navbar  from '../components/Navbar';
-
 
 const SolicitarCarona = () => {
   const [formData, setFormData] = useState({

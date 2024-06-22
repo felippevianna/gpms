@@ -19,9 +19,9 @@ const Perfil = () => {
     // Função para buscar os dados do usuário
     const fetchUserData = async () => {
       try {
-        const token = localStorage.getItem('token');
-        const userId = localStorage.getItem('userId');
-        const response = await axios.get('http://localhost:8080/api/users/' + userId);
+        // const token = localStorage.getItem('token');
+        const user = JSON.parse(localStorage.getItem('user'));
+        const response = await axios.get('http://localhost:8080/api/users/' + user.id);
 
         // const response = await axios.get('http://localhost:8080/api/users/' + userId, {
         //   headers: {

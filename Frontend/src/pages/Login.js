@@ -28,12 +28,12 @@ const Login = () => {
         password,
       });
 
-      const { token, userId, userName } = response.data;
-      // Armazene o token e o userId (ID do usuário) no localStorage ou sessionStorage
+      const { token, user } = response.data;
+      // Armazene o token e o user no localStorage ou sessionStorage
       localStorage.setItem('token', token);
-      localStorage.setItem('userId', userId);
+      localStorage.setItem('user', JSON.stringify(user));
 
-      console.log('Login successful! Token:', token, 'UserID:', userId);
+      console.log('Login successful!');
 
       // Redirecionar para a página de perfil após o login
       navigate('/perfil'); // Use navigate para redirecionar

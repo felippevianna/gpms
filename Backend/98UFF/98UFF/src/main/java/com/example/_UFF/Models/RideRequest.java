@@ -1,9 +1,7 @@
 package com.example._UFF.Models;
 
 import jakarta.persistence.*;
-import java.time.LocalDateTime;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Getter;
@@ -21,17 +19,29 @@ public class RideRequest {
 
     @ManyToOne
     @JoinColumn(name = "usuario_id")
-    @JsonIgnore
     private User usuario;
 
-    private String origem;
-    private String destino;
-    private LocalDateTime dataHoraPartida;
-    private LocalDateTime dataHoraChegada;
+    @ManyToOne
+    @JoinColumn(name = "carona_id")
+    @JsonBackReference
+    private Ride carona;
+
     private String status;
+
+    @PrePersist
+    public void prePersist() {
+        if (status == null) {
+            status = "PENDENTE"; // Define o valor padrão para o campo status
+        }
+    }
 
     @JsonProperty("usuario_id")
     public Long getUserId() {
         return (this.usuario != null) ? this.usuario.getId() : null;
+    }
+
+    @JsonProperty("carona_id")
+    public Long getRideId() {
+        return (this.carona != null) ? this.carona.getId() : null;
     }
 }
