@@ -1,0 +1,135 @@
+/* Login.css */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #e6c96aad; /* Taxi yellow background color */
+  }
+  
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.1); /* Semi-transparent overlay */
+  }
+  
+  .form-container {
+    max-width: 400px;
+    width: 100%;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+
+  .login-logo {
+    width: 200px; /* Adjust width as needed */
+    margin-bottom: 5px;
+    display: block; /* Ensures the image behaves like a block-level element */
+    margin: 0 auto; /* Center horizontally */
+    text-align: center; /* Align text (not necessary for images) */
+  }
+  
+  .title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    color: #333;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group {
+    margin-bottom: 10px;
+  }
+  
+  .form-group p {
+    margin-bottom: 5px;
+    color: #555;
+  }
+  
+  .input-field {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .submit-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #ffffff;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submit-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .error-message {
+    color: red;
+    margin-top: 10px;
+  }
+  
+  .link-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+  }
+  
+  .link-container p {
+    margin-right: 5px;
+    color: #555;
+  }
+  
+  .link {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .link:hover {
+    color: #0056b3;
+  }
+
+  .MuiBox-root {
+    background-color: #fbc101; /* Change to your desired color */
+  }
+
+  @media screen and (max-width: 960px) {
+    .form-container {
+      max-width: 300px; /* Adjust max-width for smaller screens */
+    }
+    .login-logo {
+      width: 170px; /* Adjust logo size for smaller screens */
+      content: url('../styles/98UFF_logo_cell.png');
+    }
+  
+    .MuiBox-root {
+      flex-direction: column; /* Adjust flex direction for smaller screens */
+    }
+    .MuiBox-root css-1cc1940 {	
+        height: 100%;
+    }
+    .MuiBox-root css-18tuufq{
+        width: 100%;
+    }
+    .input-field,
+    .submit-btn {
+      width: 100%; /* Ensure inputs and button take full width on smaller screens */
+    }
+  }
