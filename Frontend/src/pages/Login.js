@@ -10,6 +10,7 @@ import Divider from '@mui/joy/Divider';
 import Link from '@mui/joy/Link';
 import logo from '../styles/98UFF.png'; // Certifique-se de que o caminho está correto
 import { useNavigate } from 'react-router-dom'; // Importe useNavigate para redirecionamento
+import '../styles/Login.css';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -54,44 +55,46 @@ const Login = () => {
 
   return (
     <Container>
-      <Box container spacing={1} sx={{ flexGrow: 1, p: 5, border: '1px ridge grey', borderRadius: 10 }}>
-        <div style={{ display: 'grid', placeItems: 'center', height: '10vh' }}>
-          <img src={logo} alt="Logo" style={{ width: '120px', marginBottom: '30px' }} />
-        </div>
-        <h2>Login</h2>
+      <Box container spacing={1} sx={{ display: 'flex', justifyContent: 'center', flexGrow: 1, p: 2, border: '1px ridge grey', alignItems: 'center', borderRadius: 10 }}>
+        <Box sx={{ width: { xs: '90%', sm: '50%', md: '35%' }, textAlign: 'center', border: '3px ridge grey', borderRadius: 10, marginBottom: { xs: '20px', md: 0 }, marginRight: { xs: 0, md: '20px' } }}>
+          <img src={logo} alt="Logo" className="login-logo" />
+        </Box>
+        <Box sx={{ width: { xs: '90%', sm: '50%', md: '55%' }, marginTop: { xs: '20px', md: 0 } }}>
+          <Grid container>
+            <Grid item xs={12}>
+              <form onSubmit={handleSubmit}>
+                <Stack spacing={2}>
+                  <p>Usuário:</p>
+                  <Input
+                    placeholder="Email"
+                    value={username}
+                    onChange={handleUsernameChange}
+                  />
 
-        <Grid xs={6} md={12}>
-          <form onSubmit={handleSubmit}>
-            <Stack spacing={2}>
+                  <p>Senha:</p>
+                  <Input
+                    type="password"
+                    placeholder="Senha"
+                    value={password}
+                    onChange={handlePasswordChange}
+                  />
 
-              <p>Usuário:</p>
-              <Input
-                placeholder="Email"
-                value={username}
-                onChange={handleUsernameChange}
-              />
+                  <Button type="submit" disabled={!username || !password}>
+                    Entrar
+                  </Button>
 
-              <p>Senha:</p>
-              <Input
-                type="password"
-                placeholder="Senha"
-                value={password}
-                onChange={handlePasswordChange}
-              />
+                  {error && <p style={{ color: 'red' }}>{error}</p>}
 
-              <Button type="submit" disabled={!username || !password}>Entrar</Button>
-
-              {error && <p style={{ color: 'red' }}>{error}</p>}
-
-              <Divider />
-              <Box sx={{ display: 'flex', gap: 1, alignItems: 'center', flexWrap: 'wrap' }}>
-                <p>Não tem uma conta?</p>
-                <Link href="/cadastro">Cadastre-se</Link>
-              </Box>
-
-            </Stack>
-          </form>
-        </Grid>
+                  <Divider />
+                  <Box sx={{ display: 'flex', gap: 1, alignItems: 'center', flexWrap: 'wrap' }}>
+                    <p>Não tem uma conta?</p>
+                    <Link href="/Cadastro">Cadastre-se</Link>
+                  </Box>
+                </Stack>
+              </form>
+            </Grid>
+          </Grid>
+        </Box>
       </Box>
     </Container>
   );
