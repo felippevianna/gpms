@@ -9,23 +9,19 @@ import SolicitarCarona from './pages/SolicitarCarona';
 import Perfil from './pages/Perfil';
 import CadastroVeiculo from './pages/CadastroVeiculo';
 
-// Function to check if the user is authenticated
 const isAuthenticated = () => {
-  const token = localStorage.getItem('token'); // Retrieve token from localStorage
-  return !!token; // Returns true if token exists, false otherwise
+  const token = localStorage.getItem('token');
+  return !!token;
 };
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Default route redirects to Login if not authenticated */}
         <Route path="/" element={<Navigate to="/Login" />} />
 
-        {/* Route for Login page */}
         <Route path="/Login" element={<Login />} />
 
-        {/* Protected routes - redirect to Login if not authenticated */}
         <Route
           path="/Home"
           element={isAuthenticated() ? <Home /> : <Navigate to="/Login" />}

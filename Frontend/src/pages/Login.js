@@ -8,8 +8,8 @@ import Button from '@mui/joy/Button';
 import Box from '@mui/joy/Box';
 import Divider from '@mui/joy/Divider';
 import Link from '@mui/joy/Link';
-import logo from '../styles/98UFF.png'; // Certifique-se de que o caminho está correto
-import { useNavigate } from 'react-router-dom'; // Importe useNavigate para redirecionamento
+import logo from '../styles/98UFF.png';
+import { useNavigate } from 'react-router-dom';
 import '../styles/Login.css';
 
 const Login = () => {
@@ -21,8 +21,6 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(username);
-    console.log(password);
     try {
       const response = await axios.post('http://localhost:8080/api/auth/login', {
         username,
@@ -34,10 +32,10 @@ const Login = () => {
       localStorage.setItem('token', token);
       localStorage.setItem('user', JSON.stringify(user));
 
-      console.log('Login successful!');
+      console.log(response.data);
 
       // Redirecionar para a página de perfil após o login
-      navigate('/perfil'); // Use navigate para redirecionar
+      navigate('/Perfil'); // Use navigate para redirecionar
 
     } catch (error) {
       setError('Erro ao fazer login. Verifique suas credenciais.');

@@ -6,8 +6,7 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import axios from 'axios';
 import Stack from '@mui/joy/Stack';
-import { useNavigate } from 'react-router-dom'; // Importe useNavigate para redirecionamento
-
+import { useNavigate } from 'react-router-dom';
 const Cadastro = () => {
   const [formData, setFormData] = useState({
     nome: '',
@@ -16,7 +15,7 @@ const Cadastro = () => {
     telefone: '',
     reputacao: '5.0',
   });
-  const navigate = useNavigate(); // Inicialize useNavigate para navegação
+  const navigate = useNavigate();
 
   const isFormValid = () => {
     return formData.nome && formData.email && formData.senha && formData.telefone;
@@ -42,17 +41,18 @@ const Cadastro = () => {
 
     try {
       const response = await axios.post('http://localhost:8080/api/users', usuarioData);
-      console.log(response.data);
-
-      navigate('/Login'); // Use navigate para redirecionar
-    } catch (error) {
+      if (response.statusCode === 200 ) {
+        navigate('/Login');
+      } else{
+        console.error('Erro ao cadastrar usuário: status', resposne.statusCode);
+      }
+    } catch (e) {
       console.error('Erro ao cadastrar usuário:', error);
-      // Precisamos implementar o tratamentos dos erros ainda.
     }
   };
 
   const handleBack = () => {
-    navigate('/Login'); // Altere '/previous-path' para o caminho desejado
+    navigate('/Login');
   };
 
   return (

@@ -25,10 +25,10 @@ const Navbar  = () => {
             <Link href="/carona" color="inherit" underline="none">
             Cadastrar Carona
             </Link>
-            <Link href="/SolicitarCarona" color="inherit" underline="none">
+            {/* <Link href="/SolicitarCarona" color="inherit" underline="none">
             Solicitar Carona
-            </Link>
-            <Link href="/listar-caronas" color="inherit" underline="none">
+            </Link> */}
+            <Link href="/ListarCaronas" color="inherit" underline="none">
             Buscar Carona
             </Link>
             <Link href="/Perfil" color="inherit" underline="none">
