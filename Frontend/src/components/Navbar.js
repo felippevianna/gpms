@@ -5,8 +5,16 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar  = () => {
+    const navigate = useNavigate();
+    const handleLogout = () =>{
+        localStorage.clear();
+        navigate('/Login');
+    }
+
+
     return (
         <AppBar position="fixed" sx={{ backgroundColor: '#FBC101' }}>
         <Toolbar>
@@ -26,7 +34,7 @@ const Navbar  = () => {
             <Link href="/Perfil" color="inherit" underline="none">
             Meu Perfil
             </Link>
-            <Link href="/Login" color="inherit" underline="none">
+            <Link onClick={handleLogout} color="inherit" underline="none">
             Sair
             </Link>
         </Box>
