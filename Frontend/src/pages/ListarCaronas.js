@@ -41,7 +41,6 @@ const ListarCaronas = () => {
         const user = JSON.parse(localStorage.getItem('user'));
         console.log(user);
 
-        // Verifica se o userId e selectedRide são válidos
         if (!user || !selectedRide) {
             alert('Erro: Usuário ou carona não definidos.');
             navigate('/Login');
@@ -70,7 +69,7 @@ const ListarCaronas = () => {
             <Navbar/>
 
             <Container>
-                <Box container spacing={0} sx={{ flexGrow: 0, p: 3, border: '1px ridge grey', borderRadius: 10, marginTop: 20 }}>
+                <Box sx={{ flexGrow: 0, p: 3, border: '1px ridge grey', borderRadius: 10, marginTop: 20 }}>
                     <form onSubmit={handleSubmit}>
                         <p>Buscar carona por destino:</p>
                         <Input
@@ -83,7 +82,7 @@ const ListarCaronas = () => {
                     </form>
                 </Box>
 
-                <Box container spacing={0} sx={{ flexGrow: 0, p: 3, border: '1px ridge grey', borderRadius: 10, marginTop: 2 }}>
+                <Box sx={{ flexGrow: 0, p: 3, border: '1px ridge grey', borderRadius: 10, marginTop: 2 }}>
                     {searchResults.map((ride) => (
                         <Card key={ride.id} style={{ marginBottom: '20px' }}>
                             <CardContent>
@@ -112,7 +111,6 @@ const ListarCaronas = () => {
                     ))}
                 </Box>
 
-                {/* Modal para exibir detalhes da carona */}
                 <Modal
                     open={openModal}
                     onClose={handleCloseModal}
@@ -144,7 +142,7 @@ const ListarCaronas = () => {
                                     color="primary"
                                     onClick={handleRequestRide}
                                     sx={{ mt: 2, ml: 2 }}
-                                    >
+                                >
                                     Solicitar Carona
                                 </Button>
                             </>
