@@ -40,13 +40,8 @@ const ListarCaronas = () => {
     const handleRequestRide = async () => {
         const user = JSON.parse(localStorage.getItem('user'));
 
-<<<<<<< HEAD
         if (!user) {
             alert('Erro: Usuário não definido.');
-=======
-        if (!user || !selectedRide) {
-            alert('Erro: Usuário ou carona não definidos.');
->>>>>>> 204b296c015e5c553a70a8e35cab0350b646b044
             navigate('/Login');
             return;
         }
@@ -73,7 +68,7 @@ const ListarCaronas = () => {
             <Navbar/>
 
             <Container>
-                <Box sx={{ flexGrow: 0, p: 3, border: '1px ridge grey', borderRadius: 10, marginTop: 20 }}>
+                <Box container spacing={0} sx={{ flexGrow: 0, p: 3, border: '1px ridge grey', borderRadius: 10, marginTop: 20 }}>
                     <form onSubmit={handleSubmit}>
                         <p>Buscar carona por destino:</p>
                         <Input
@@ -86,7 +81,7 @@ const ListarCaronas = () => {
                     </form>
                 </Box>
 
-                <Box sx={{ flexGrow: 0, p: 3, border: '1px ridge grey', borderRadius: 10, marginTop: 2 }}>
+                <Box container spacing={0} sx={{ flexGrow: 0, p: 3, border: '1px ridge grey', borderRadius: 10, marginTop: 2 }}>
                     {searchResults.map((ride) => (
                         <Card key={ride.id} style={{ marginBottom: '20px' }}>
                             <CardContent>
@@ -115,6 +110,7 @@ const ListarCaronas = () => {
                     ))}
                 </Box>
 
+                {/* Modal para exibir detalhes da carona */}
                 <Modal
                     open={openModal}
                     onClose={handleCloseModal}
@@ -146,7 +142,7 @@ const ListarCaronas = () => {
                                     color="primary"
                                     onClick={handleRequestRide}
                                     sx={{ mt: 2, ml: 2 }}
-                                >
+                                    >
                                     Solicitar Carona
                                 </Button>
                             </>
