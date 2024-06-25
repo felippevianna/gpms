@@ -47,6 +47,7 @@ const SolicitarCarona = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(formData);
   };
 
   const sugestoesPontosPartida = [

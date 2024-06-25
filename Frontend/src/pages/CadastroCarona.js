@@ -32,7 +32,7 @@ const CadastroCarona = () => {
     try {
       formData.motorista = JSON.parse(localStorage.getItem('user'));
       await axios.post('http://localhost:8080/api/rides', formData);
-      navigate('/Perfil')
+      navigate('/perfil')
 
     } catch (error) {
       console.error('Erro ao cadastrar o ride:', error);
@@ -60,7 +60,7 @@ const CadastroCarona = () => {
             <p>Vagas Disponíveis:</p>
             <Input type="number" name="vagasDisponiveis" onChange={handleChange} placeholder="Quantidade de vagas disponíveis" />
 
-            <Button style={{ marginTop: '20px' }} type="submit">Cadastrar Carona</Button>
+            <Button style={{ marginTop: '20px' }} type="submit">Cadastrar Ride</Button>
           </form>
         </Box>
       </Container>

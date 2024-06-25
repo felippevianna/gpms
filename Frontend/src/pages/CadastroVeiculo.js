@@ -5,11 +5,12 @@ import Box from '@mui/joy/Box';
 import Container from '../components/Container';
 import Input from '@mui/joy/Input';
 import Navbar from '../components/Navbar';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; // Importe useNavigate para redirecionamento
 import Typography from '@mui/material/Typography';
 
 const CadastroVeiculo = () => {
   const [formData, setFormData] = useState({
+    usuarioId: '', // Atributo correspondente ao usuario_id
     marca: '',
     modelo: '',
     placa: '',
@@ -17,7 +18,7 @@ const CadastroVeiculo = () => {
     ano: '',
   });
 
-  const navigate = useNavigate(); 
+  const navigate = useNavigate(); // Inicialize useNavigate para navegação
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,17 +31,16 @@ const CadastroVeiculo = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      formData.usuario = JSON.parse(localStorage.getItem('user'));
-      await axios.post('http://localhost:8080/api/vehicles', formData);
-      alert('Solicitação de carona enviada com sucesso!');
+      const response = await axios.post('http://localhost:8080/api/vehicles', formData);
+      console.log('Veículo cadastrado:', response.data);
+      // Lógica adicional após cadastrar o veículo, como redirecionar ou limpar o formulário
     } catch (error) {
-      alert('Erro ao cadastrar o veículo');
       console.error('Erro ao cadastrar o veículo:', error);
     }
   };
 
   const handleBack = () => {
-    navigate('/Perfil');
+    navigate('/Perfil'); // Altere '/previous-path' para o caminho desejado
   };
 
   return (

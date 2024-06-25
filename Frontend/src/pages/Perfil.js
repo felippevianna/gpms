@@ -7,7 +7,7 @@ import StarIcon from '@mui/icons-material/Star';
 import StarOutlineIcon from '@mui/icons-material/StarOutline';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import axios from 'axios';
+import axios from 'axios'; // Importar axios
 import Navbar from '../components/Navbar';
 import { Link as RouterLink } from 'react-router-dom';
 
@@ -16,6 +16,7 @@ const Perfil = () => {
   const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
+    // Função para buscar os dados do usuário
     const fetchUserData = async () => {
       try {
         // const token = localStorage.getItem('token');
@@ -53,6 +54,7 @@ const Perfil = () => {
     }
   };
 
+  // Função para renderizar as estrelas com base na reputação
   const renderStarRating = (reputacao) => {
     const stars = [];
     const reputacaoInteira = Math.floor(reputacao); // Parte inteira da reputação
@@ -101,8 +103,8 @@ const Perfil = () => {
                   borderRadius: '10px',
                   padding: '30px',
                   textAlign: 'center',
-                  maxWidth: '700px', 
-                  width: '100%',
+                  maxWidth: '700px', // Define uma largura máxima para a caixa
+                  width: '100%', // Garante que a caixa ocupe 100% da largura disponíve
                 }}
               >
                 <Typography variant="h4" gutterBottom>
@@ -197,7 +199,7 @@ const Perfil = () => {
                       variant="contained"
                       color="primary"
                       component={RouterLink}
-                      to="/CadastroVeiculo"
+                      to="/CadastroVeiculo" // Altere para o caminho da tela desejada
                       sx={{ mt: 2, ml: 2 }}
                     >
                       Cadastrar Veiculo

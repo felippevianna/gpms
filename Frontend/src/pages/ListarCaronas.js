@@ -39,9 +39,11 @@ const ListarCaronas = () => {
 
     const handleRequestRide = async () => {
         const user = JSON.parse(localStorage.getItem('user'));
+        console.log(user);
 
-        if (!user) {
-            alert('Erro: Usuário não definido.');
+        // Verifica se o userId e selectedRide são válidos
+        if (!user || !selectedRide) {
+            alert('Erro: Usuário ou carona não definidos.');
             navigate('/Login');
             return;
         }
