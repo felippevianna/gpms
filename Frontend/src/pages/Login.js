@@ -16,29 +16,17 @@ const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const navigate = useNavigate(); // Inicialize useNavigate para navegação
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    console.log(username);
-    console.log(password);
     try {
-      const response = await axios.post('http://localhost:8080/api/auth/login', {
-        username,
-        password,
-      });
-
+      const response = await axios.post('http://localhost:8080/api/auth/login', { username, password });
       const { token, user } = response.data;
-      // Armazene o token e o user no localStorage ou sessionStorage
       localStorage.setItem('token', token);
       localStorage.setItem('user', JSON.stringify(user));
-
       console.log('Login successful!');
-
-      // Redirecionar para a página de perfil após o login
-      navigate('/perfil'); // Use navigate para redirecionar
-
+      navigate('/Perfil'); // Ensure navigate is called after successful login
     } catch (error) {
       setError('Erro ao fazer login. Verifique suas credenciais.');
       console.error('Erro ao fazer login:', error);

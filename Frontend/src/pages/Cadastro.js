@@ -16,7 +16,7 @@ const Cadastro = () => {
     telefone: '',
     reputacao: '5.0',
   });
-  const navigate = useNavigate(); // Inicialize useNavigate para navegação
+  const navigate = useNavigate();
 
   const isFormValid = () => {
     return formData.nome && formData.email && formData.senha && formData.telefone;
@@ -32,27 +32,21 @@ const Cadastro = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const dataAtual = new Date().toISOString().split('T')[0];
-
-    const usuarioData = {
-      ...formData,
-      dataCadastro: dataAtual,
-    };
+    const usuarioData = { ...formData, dataCadastro: dataAtual };
 
     try {
       const response = await axios.post('http://localhost:8080/api/users', usuarioData);
       console.log(response.data);
-
-      navigate('/Login'); // Use navigate para redirecionar
+      navigate('/Login'); // Redirect to login after successful registration
     } catch (error) {
       console.error('Erro ao cadastrar usuário:', error);
-      // Precisamos implementar o tratamentos dos erros ainda.
+      // Implement error handling if needed
     }
   };
 
   const handleBack = () => {
-    navigate('/Login'); // Altere '/previous-path' para o caminho desejado
+    navigate('/Login'); // Navigate to login page
   };
 
   return (
